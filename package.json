@@ -22,5 +22,9 @@
   "devDependencies": {
     "eslint": "8.14.0",
     "eslint-config-next": "12.1.5"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/cuvy500/coinbase-clone-blockchain.git",
+  "author": "Cuvy Jet <cuvy500@gmail.com>",
+  "license": "MIT"
 }

@@ -15,10 +15,10 @@ export default function Home() {
         <Button onClick={() => connectWithMetamask('injected')}>
           Connect Wallet
         </Button>
-        <Detail>
+        <Details>
           You need Chrome to be
           <br/>able to run this app.
-        </Detail>
+        </Details>
       </WalletConnect>
       )}
     </Wrapper>
@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   height: 100vh;
   max-width: 100vw;
   background-color: #0a0b0d;
-  color: black;
+  color: white;
   display: grid;
   place-items: center;
 `
@@ -43,7 +43,7 @@ const WalletConnect = styled.div`
 `
 
 const Button = styled.div`
-  /* flex:0; */
+  /* flex: 0; */
   border: 1px solid #282b2f;
   padding: 0.8rem;
   font-size: 1.3rem;
@@ -51,13 +51,12 @@ const Button = styled.div`
   border-radius: 0.4rem;
   background-color: #3773f5;
   color: #000;
-
   &:hover {
-    cursor:pointer;
+    cursor: pointer;
   }
 `
 
-const Detail = styled.div`
+const Details = styled.div`
   font-size: 1.2rem;
   text-align: center;
   margin-top: 1rem;
