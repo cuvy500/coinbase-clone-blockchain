@@ -1,6 +1,6 @@
-import styled from "styled-components"
 import { useAddress ,useMetamask } from "@thirdweb-dev/react";
 import Dashboard from "./Dashboard";
+import styled from "styled-components"
 
 export default function Home() {
   const connectWithMetamask = useMetamask();
