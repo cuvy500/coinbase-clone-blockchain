@@ -33,7 +33,7 @@ const data = {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 72, 45, 67, 55, 42],
+            data: [65, 59, 80, 81, 56, 72, 45, 67, 55],
         },
     ],
 }

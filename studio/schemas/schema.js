@@ -33,8 +33,8 @@ export default createSchema({
           type: 'string',
         },
         {
-          title: 'TWD Price',
-          name: 'twdPrice',
+          title: 'USD Price',
+          name: 'usdPrice',
           type: 'string',
         },
         {

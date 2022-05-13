@@ -1,48 +1,47 @@
-import react, {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { coins } from "../static/coins";
 import Coin from "./Coin";
 import BalanceChart from "./BalanceChart";
-import { ThirdwebSDK } from "@thirdweb-dev/sdk";
-import { ethers } from "ethers";
 
-const sdk = new ThirdwebSDK(
-  new ethers.Wallet(
-    process.env.NEXT_PUBLIC_METAMASK_KEY,
-    ethers.getDefaultProvider()
-  )
-)
+const Portfolio = ({ thirdWebTokens, sanityTokens, walletAddress }) => {
+  const [walletBalance, setWalletBalance] = useState(0)
+  const tokenToUSD = {}
 
-const Portfolio = () => {
-  const [sanityTokens, setSanityTokens] = useState([])
+  for (const token of sanityTokens) {
+    tokenToUSD[token.contractAddress] = Number(token.usdPrice)
+  }
 
   useEffect(() => {
-    const getCoins = async() => {
-      try{
-        const coins = await fetch("https://eprxgltg.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%3D%3D'coins'%5D%7B%0A%20%20name%2C%0A%20%20twdPrice%2C%0A%20%20contractAddress%2C%0A%20%20symbol%2C%0A%20%20logo%2C%0A%7D")
-        const tempSanityTokens = await coins.json()
-        console.log(tempSanityTokens)
-        setSanityTokens(tempSanityTokens.result)
-      } catch(error){
-        console.log(error)
-      }
+    const calculateTotalBalance = async () => {
+      const totalBalance = await Promise.all(
+        thirdWebTokens.map(async token => {
+          const balance = await token.ba2
+          lanceOf(walletAddress)
+          return Number(balance.displayValue) * tokenToUSD[token.address]
+        })
+      )
+      setWalletBalance(totalBalance.reduce((acc, curr) => acc + curr,0))
     }
 
-    return getCoins()
+    calculateTotalBalance()
   }, [])
+
   return (
     <Wrapper>
       <Content>
         <Chart>
-          <Balance>
-            <BalanceTitle>Portfolio balance</BalanceTitle>
-            <BalanceValue>
-              {'$'}
-              50,000
-            </BalanceValue>
-            <BalanceChart />
-          </Balance>
+          <div>
+            <Balance>
+              <BalanceTitle>Portfolio balance</BalanceTitle>
+              <BalanceValue>
+                {'$'}
+                {walletBalance.toLocaleString()}
+              </BalanceValue>
+            </Balance>
+          </div>
+          <BalanceChart />
         </Chart>
         <PortfolioTable>
           <TableItem>
